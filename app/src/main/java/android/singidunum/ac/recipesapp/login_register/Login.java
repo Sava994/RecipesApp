@@ -1,10 +1,12 @@
-package android.singidunum.ac.recipesapp;
+package android.singidunum.ac.recipesapp.login_register;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.singidunum.ac.recipesapp.MainActivity;
+import android.singidunum.ac.recipesapp.R;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -77,7 +79,7 @@ public class Login extends AppCompatActivity {
         labelRegisterHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Register.class));
+                startActivity(new Intent(getApplicationContext(), Register.class));
             }
         });
     }
