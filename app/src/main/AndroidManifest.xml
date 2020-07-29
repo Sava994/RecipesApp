@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.singidunum.ac.recipesapp">
-    
+
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
@@ -11,15 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login_register.Register">
+        <activity
+            android:name=".login_register.Register"
+            android:theme="@style/AppTheme.NoActionBarLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login_register.Login"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".login_register.Login"
+            android:theme="@style/AppTheme.NoActionBarLogin"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

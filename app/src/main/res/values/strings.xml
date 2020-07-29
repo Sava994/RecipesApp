@@ -3,10 +3,13 @@
     <string name="recipes_app">Recipes App</string>
     <string name="password">Password</string>
     <string name="register">REGISTER</string>
+    <string name="login">LOGIN</string>
     <string name="email">Email</string>
     <string name="full_name">Full name</string>
     <string name="already_have_account_login_here">Already have account? Login here</string>
     <string name="create_new_account">Create new account</string>
     <string name="login_into_account">Login into account</string>
     <string name="dont_have_account_register_here">Dont have account? Register here</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
