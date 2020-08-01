@@ -27,6 +27,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+
 import javax.annotation.Nullable;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -120,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
           super.onBackPressed();
         }
     }
+
+
 
     public void logout() {
         FirebaseAuth.getInstance().signOut();
