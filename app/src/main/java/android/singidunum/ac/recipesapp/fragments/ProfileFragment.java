@@ -6,9 +6,6 @@ import android.singidunum.ac.recipesapp.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -27,10 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class ProfileFragment extends Fragment {
 
-    private Button buttonChose;
-    private Button buttonUpload;
-    private ImageView imageView;
-    private ProgressBar progressBar;
+
     private View view;
 
 
@@ -39,12 +33,6 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        buttonChose = (Button) view.findViewById(R.id.buttonChose);
-        buttonUpload = (Button) view.findViewById(R.id.buttonUpload);
-        imageView = (ImageView) view.findViewById(R.id.imageUserProfile);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBarImage);
-
 
         loadData();
 
