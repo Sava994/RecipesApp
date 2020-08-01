@@ -11,15 +11,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.singidunum.ac.recipesapp.fragments.HomeFragment;
 import android.singidunum.ac.recipesapp.fragments.MyRecipesFragment;
-import android.singidunum.ac.recipesapp.fragments.SettingsFragment;
+import android.singidunum.ac.recipesapp.fragments.ProfileFragment;
 import android.singidunum.ac.recipesapp.login_register.Login;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import javax.annotation.Nullable;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
@@ -42,8 +50,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //rotiranje meni opcije
         toggle.syncState();
 
+        //ucitavanje podataka
+        loadData();
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit(); // kada pokrenemo aktivnost prvo ce prikazivati home kao standardno
         navigationView.setCheckedItem(R.id.nav_home);
+    }
+
+    //uzimamo podatke iz baze o korisniku i ucitavamo ih u navigacioni meni
+    private void loadData() {
+        final TextView fullName;
+        final TextView email;
+        View nvViwe;
+        String userId;
+        FirebaseFirestore fStore;
+        FirebaseAuth fAuth;
+
+        NavigationView nv = findViewById(R.id.nav_view);
+        nvViwe = nv.getHeaderView(0);
+        fullName = (TextView) nvViwe.findViewById(R.id.fullName);
+        email = (TextView) nvViwe.findViewById(R.id.userEmail);
+
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        userId = fAuth.getCurrentUser().getUid();
+
+        DocumentReference documentReference = fStore.collection("user").document(userId);
+        //postavljamo ime i prezime kao i email u navigacioni meni
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                fullName.setText(documentSnapshot.getString("Full name"));
+                email.setText(documentSnapshot.getString("email"));
+            }
+        });
     }
 
     //kada pritisnemo zelimo da bude selektovano zato je true, i na osnovu selektovanog izvrsava se nesto
@@ -56,8 +97,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_myRecipes:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyRecipesFragment()).commit();
                 break;
-            case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+            case R.id.nav_profile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
                 break;
             case R.id.nav_logOut:
                 logout();

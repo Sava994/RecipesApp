@@ -8,7 +8,7 @@
     android:padding="16dp" >
 
     <ImageView
-        android:id="@+id/userImage"
+        android:id="@+id/userImageNav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher_round" />
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="NEKI TEKST"
+        android:text="Ime i prezime"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000" />
 
@@ -26,7 +26,7 @@
         android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="neki dodatni tekst"
+        android:text="email"
         android:textColor="#000000" />
 
 </LinearLayout>
