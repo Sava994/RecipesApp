@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
+import android.singidunum.ac.recipesapp.API.Api;
+import android.singidunum.ac.recipesapp.API.ReadDataHandler;
 import android.singidunum.ac.recipesapp.fragments.HomeFragment;
 import android.singidunum.ac.recipesapp.fragments.MyRecipesFragment;
 import android.singidunum.ac.recipesapp.fragments.ProfileFragment;
@@ -121,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
           super.onBackPressed();
         }
     }
-
 
 
     public void logout() {
