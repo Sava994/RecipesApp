@@ -75,6 +75,7 @@ public class MealAdapter extends ArrayAdapter {
 
             }
         });
+
         
         
         return row;
