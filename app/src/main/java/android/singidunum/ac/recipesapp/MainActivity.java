@@ -6,17 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
-import android.singidunum.ac.recipesapp.API.Api;
-import android.singidunum.ac.recipesapp.API.ReadDataHandler;
 import android.singidunum.ac.recipesapp.fragments.HomeFragment;
-import android.singidunum.ac.recipesapp.fragments.MyRecipesFragment;
 import android.singidunum.ac.recipesapp.fragments.ProfileFragment;
 import android.singidunum.ac.recipesapp.login_register.Login;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -82,12 +78,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userId = fAuth.getCurrentUser().getUid();
 
         DocumentReference documentReference = fStore.collection("user").document(userId);
+
         //postavljamo ime i prezime kao i email u navigacioni meni
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                fullName.setText(documentSnapshot.getString("Full name"));
-                email.setText(documentSnapshot.getString("email"));
+                if(e!=null) {
+                    Log.d("TAG","Error:"+e.getMessage());
+                }
+                else {
+                    fullName.setText(documentSnapshot.getString("Full name"));
+                    email.setText(documentSnapshot.getString("email"));
+                }
             }
         });
     }
@@ -98,9 +100,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit(); //pokrecemo home fragment i menjamo ga sa fragment_container koji je frameLayout i nalazi se u activity_main
-                break;
-            case R.id.nav_myRecipes:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyRecipesFragment()).commit();
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();

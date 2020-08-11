@@ -32,6 +32,7 @@
         <activity
             android:name=".meals.MealDescriptionPage"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

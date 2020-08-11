@@ -3,6 +3,7 @@ package android.singidunum.ac.recipesapp.fragments;
 
 import android.os.Bundle;
 import android.singidunum.ac.recipesapp.R;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +62,13 @@ public class ProfileFragment extends Fragment {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                fullNameProfile.setText(documentSnapshot.getString("Full name"));
-                emailProfile.setText(documentSnapshot.getString("email"));
+                if(e!=null) {
+                    Log.d("TAG","Error:"+e.getMessage());
+                }
+                else {
+                    fullNameProfile.setText(documentSnapshot.getString("Full name"));
+                    emailProfile.setText(documentSnapshot.getString("email"));
+                }
             }
         });
     }
